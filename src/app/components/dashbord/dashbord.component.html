@@ -1,0 +1,153 @@
+<div class="parent">
+
+
+    <div class="profile">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAMFBMVEXk5ueutLfFycvn6eqrsbSnrrHZ3N3Axce6v8HS1dfIzM7q7O3f4eLP09S1ur2yuLpgxxL0AAADQklEQVR4nO2a25arIAyGwSAHRXz/tx3Uju30IISayF6b/6be9Vs5QoIQTU1NTU1NTU1NTU1NTU1N/7sAnj+uFICfOmMXmcH58VomENpItUjK2++gxWVMAENYUR6llHXXmAnE0D/TbOqlu4AIdHiPs5rJ8vtt6D/irEgTKxEI+9k8N6KBkQjEgbt2IsNH5JM0GxEb0JwFxGYjSMbPTtRxEMGQyxMrkqYnAn2c70/y5EAiYHiUHYlxoMt3GI/TUA6LsrQ4YHAGik7TpEB5JfGPAmUUwYQ10GIiwigCvIFoO4jGG0jKmY4HU6Tv6gnD2hbwUJ6MCnJsEV21xrWxu6h4hCsEouqw2D72K7JKhO8bNyCqa9pYlGSEV6IRdRR6AKLK++qAoDqg2mKoOMvIgArrEN10prZKXV8vK+z2hKfq2s5D9Z0YaztT13frKPEZ7dW1IM9m0vkHGLSBqIfo2NoYaHHEiGyw9PMhnzmC3UQ/QROA67AMM0bMIYQ8ojfNdc2po3J52LYdmbsO4nnng8BneE3ZuvZTquPDWdUlNoqc+7tV4A7cpoLnXwNDNNKHrbRy7DS/SPObvX2YrntyAd5Z1e9Qy9MGc+HLhlUj6MFYG4K1tpt8De9RAG4U+8d1KCOA99o5Ny1yTmsvrqGK/+m9G0y4B4+6hdIcPRe5OB8TwehdZ6X6kPURr5fBTBo4XslEH+lOqpdsf0OlpHWeOOVg1Oa19BxASTsB2SEWQH+qzUdQvaWpTBEnhg0WZ7PTPJ2OBMLNhdOqRb0aTu22C07heHE3kxzOsxLo8IV17kgnNV3whdPgV6RwxjV2dGWh/B7phHOkPcFbD0Tyu+A+fBtYSDR9USiR9/g89eXXx7Kha1LFF8ji1UaSKBSVJDKe9ZaE58GOynBEM9pERPGzE2FHj+BIefCzPk+Q709EuKJduO5FESEaG2lA35XNQx5AmxBbGdQo+guizEYLidft5ylkRhETTu7mirgk/lGWiUq2hqXKWc2QnIE+KuNsVPrAo0xzuu3j1k/fKmM8ylMUd6CkzzhzbCVKNf2R1WMxz1IeGzlzTOYkPjNQ8vWV7hWvUlGtTcer5Ps0YFYCp6mpqamp6Z/TD585KesNpnOWAAAAAElFTkSuQmCC">
+        {{usero?.name?true:usero?.email}}
+        
+        <button (click)="buying()">buy</button>
+
+        <button (click)="authService.SignOut()">
+            Log out
+        </button>
+      
+    </div>
+
+<div class="itmes">
+<div class="Cart-Container">
+    <div class='Header'>
+        <h3 class='Heading'>itme</h3>
+        </div>
+<ul *ngFor="let itme of coldata">
+<ol>
+
+
+    
+    <div class="Cart-Items">
+        <div class="image-box">
+        <img src={{itme.img}} class="image-box" />
+        </div>
+        <div class='about'>
+        <h1 class='title'>{{itme.name}}</h1>
+        <h3 class='subtitle'>{{itme.price}}$</h3>
+        </div>
+        <div class="counter"></div>
+        <div class="prices"></div>
+        <div class="boton"> 
+        <button (click)="addToCart(itme)">add</button>
+        </div>
+        </div>
+    
+</ol>
+</ul>
+
+</div>
+
+</div>
+
+<div class="cart">
+<div class="Cart-Container">
+    <div class='Header'>
+        <h3 class='Heading'>cart</h3>
+        </div>
+<ul *ngFor="let itme of user_cart">
+<ol>
+
+
+    
+    <div class="Cart-Items">
+        <div class="image-box">
+        <img src={{itme.img}} class="image-box" />
+        </div>
+        <div class='about'>
+        <h1 class='title'>{{itme.name}}</h1>
+        <h3 class='subtitle'>{{itme.price}}$</h3>
+        </div>
+        
+
+       <div class="boton">
+        <button (click)="decresItemCart(itme)">-</button>
+        {{itme.number}}
+        <button (click)="increItemCart(itme)">+</button><br><br>
+        <button (click)="removeOutCart(itme)">remove</button>
+        <button (click)="addTowichlist(itme)">move to wichlist</button>
+    </div>
+        </div>
+    
+</ol>
+</ul>
+
+</div>
+
+</div>
+<div class="wich">
+<div class="Cart-Container">
+    <div class='Header'>
+        <h3 class='Heading'>wichlist</h3>
+        </div>
+<ul *ngFor="let itme of user_wichlist">
+<ol>
+
+
+    
+    <div class="Cart-Items">
+        <div class="image-box">
+        <img src={{itme.img}} class="image-box" />
+        </div>
+        <div class='about'>
+        <h1 class='title'>{{itme.name}}</h1>
+        <h3 class='subtitle'>{{itme.price}}$</h3>
+        </div>
+        
+        <div class="boton">
+            counter:{{itme.number}} <br>
+        <button (click)="removeOutwichlist(itme)">remove</button>
+        <button (click)="moveTocart(itme)">move to cart</button>
+        </div>
+        </div>
+    
+</ol>
+</ul>
+
+</div>
+
+</div>
+<div class="orderd">
+<div class="Cart-Container">
+    <div class='Header'>
+        <h3 class='Heading'>orderd</h3>
+        </div>
+<ul *ngFor="let itme of user_orderd">
+<ol>
+
+
+    
+    <div class="Cart-Items">
+        <div class="image-box">
+        <img src={{itme.img}} class="image-box" />
+        </div>
+        <div class='about'>
+        <h1 class='title'>{{itme.name}}</h1>
+        <h3 class='subtitle'>{{itme.price}}$</h3>
+        </div>
+        
+        <div class="boton">
+            counter:{{itme.number}} <br>
+            <button (click)="deleto(itme)">clear buy order</button>
+        </div>
+        </div>
+    
+</ol>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+</div>
+</div>

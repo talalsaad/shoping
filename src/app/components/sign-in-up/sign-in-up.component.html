@@ -1,0 +1,60 @@
+<div class="login_background"  [ngSwitch]="view">
+
+  <div class="chose" >
+<div>
+  <button class="button" (click)="view='loging'">loging</button>
+  <button class="button" (click)="view='regester'">regester</button>
+</div>
+</div>
+<p id="error"></p>
+<br><br>
+
+<form #f="ngForm" >
+<div *ngSwitchCase="'loging'">
+<ul>
+<ol><input ngModel name="first" type="email" placeholder="email@gmail.com" #userName="ngModel" required email >email<div style="color: red;" *ngIf="userName.touched && !userName.valid ">only email are allowd</div></ol>
+<br><br>
+<ol><input ngModel name="password" type="password" placeholder="password" #userPassword="ngModel" required	  >password<div style="color: red;" *ngIf="userPassword.touched && !userPassword.valid ">enter a password</div></ol>
+
+<br><br><br><br>
+<ol><button class="button" (click)="authService.SignIn(userName.value, userPassword.value)" [disabled]="!f.valid"> login</button> <a class="forget"(click)="view='forget'">forget password ?</a>
+</ol>
+</ul>
+
+
+</div>
+<div *ngSwitchCase="'regester'">
+
+<ul>
+<ol><input ngModel name="userName" type="name" placeholder="name" #userName="ngModel"  required >username <div style="color: red;" *ngIf="userName.touched && !userName.valid ">only userName are allowd</div></ol>
+<br><br>
+
+<ol><input ngModel name="email" type="email" placeholder="email@gmail.com" #userEmail="ngModel"  required email>email <div style="color: red;" *ngIf="userEmail.touched && !userEmail.valid ">only email are allowd</div></ol>
+<br><br>
+
+<ol><input ngModel name="pass" type="password" placeholder="password" #userPwd="ngModel" required  >password
+<div style="color: red;" *ngIf="userPwd.touched && !userPwd.valid ">enter a password</div></ol>
+<br><br>
+
+<ol><input ngModel name="repass" type="password" placeholder="re-password" #reuserPwd="ngModel" required   >re-password
+<div style="color: red;" *ngIf="reuserPwd.touched &&  userPwd.value!=reuserPwd.value">password is not the same </div></ol>
+<br><br><br><br>
+<ol><button class="button" [ngClass]="!f.valid||userPwd.value!=reuserPwd.value ? 'error': ''" (click)="authService.SignUp(userEmail.value, userPwd.value,userName.value)" [disabled]="!f.valid||userPwd.value!=reuserPwd.value"> regester</button></ol>
+</ul>
+
+</div>
+
+
+<div *ngSwitchCase="'forget'">
+
+<ul>
+<ol><input ngModel name='reemail' type="email" placeholder="email@gmail.com" #passwordResetEmail="ngModel" required email>email<div style="color: red;" *ngIf="passwordResetEmail.touched && !passwordResetEmail.valid ">only email are allowd</div></ol>
+<br><br><br>
+<ol><button class="button" (click)="authService.ForgotPassword(passwordResetEmail.value)" [disabled]="!f.valid"> send</button><a class="forget"(click)="view='loging'">login?</a></ol>
+
+</ul>
+
+
+</div>
+</form>
+</div>

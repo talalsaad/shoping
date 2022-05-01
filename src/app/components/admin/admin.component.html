@@ -1,0 +1,66 @@
+<div class="parent">
+<div class="profile">  
+
+    <button (click)="authService.SignOut()">
+        Log out
+    </button>
+
+</div>
+
+
+
+
+<div class="itemo">
+    <div class="Cart-Container">
+        <div class='Header'>
+            <h3 class='Heading'>Itme List</h3>
+            </div>
+    <ul *ngFor="let itme of coldata">
+    <ol>
+    
+    
+        
+        <div class="Cart-Items">
+            <div class="image-box">
+            <img src={{itme.img}} class="image-box" />
+            </div>
+            <div class='about'>
+            <h1 class='title'>{{itme.name}}</h1>
+            <h3 class='subtitle'>{{itme.price}}$</h3>
+            </div>
+            <div class="counter"></div>
+            <div class="prices"></div>
+            <div class="boton"> 
+            <button (click)="remove(itme)">remove</button>
+            <button (click)="priceChange(itme)">edit price</button>
+            
+            </div>
+            </div>
+        
+    </ol>
+    </ul>
+    <div class='adding'><button class="adding" (click)="adding()">add itme</button></div>
+    </div>
+   
+    </div>
+
+    
+<div class="user">
+    <div class="Cart-Container">
+        <div class='Header'>
+            <h3 class='Heading'>User List</h3>
+            </div>
+    <ul *ngFor="let list of userlist">
+        <ol><div *ngIf="list.email!='admin@admin.com'">
+            <p>  name:</p>{{list.displayName}}<button (click)="namechange(list)" >cange user name</button>
+            <p>user ID:</p>{{list.uid}}
+            <p>email:</p>{{list.email}}
+            
+        </div>
+        </ol>
+    </ul>
+   
+    </div>
+
+
+</div>

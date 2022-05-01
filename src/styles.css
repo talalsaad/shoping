@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background: linear-gradient(45deg,  rgb(214, 237, 245) 0%,rgba(5, 157, 239, 0.4) 100%);
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
